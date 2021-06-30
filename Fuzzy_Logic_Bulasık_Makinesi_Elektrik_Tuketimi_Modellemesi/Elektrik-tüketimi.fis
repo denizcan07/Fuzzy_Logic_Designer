@@ -1,0 +1,69 @@
+[System]
+Name='Elektrik-tüketimi'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Günün_saati_h(t)'
+Range=[0 1440]
+NumMFs=5
+MF1='(EM)':'trapmf',[5.07042253521126 5.07042253521126 305.070422535211 505.070422535211]
+MF2='(M)':'trapmf',[300 400 650 749.9]
+MF3='(A)':'trapmf',[650 749.9 1001 1150]
+MF4='(LE)':'trapmf',[1242.53521126761 1382.53521126761 1432.53521126761 1432.53521126761]
+MF5='(E)':'trapmf',[1050 1104.08450704225 1260 1390]
+
+[Input2]
+Name='Son_çalışmadan_bu_yana_geçen_süre_DT/T(t)'
+Range=[0 2]
+NumMFs=5
+MF1='VA':'trapmf',[0.01 0.01 0.3 0.6]
+MF2='A':'trimf',[0.5 0.75 1]
+MF3='IT':'trimf',[0.9 1 1.1]
+MF4='L':'trimf',[1 1.25 1.5]
+MF5='VL':'trapmf',[1.4 1.8 1.99 1.99]
+
+[Output1]
+Name='Cihazı_başlatma_olasılığı_P(t)'
+Range=[0 1]
+NumMFs=5
+MF1='VL':'dsigmf',[100000 0.00473 57.7 0.1241]
+MF2='L':'gbellmf',[0.0821 2.83 0.27]
+MF3='M':'gaussmf',[0.0650448913952972 0.5]
+MF4='H':'gbellmf',[0.0752 2.37 0.72]
+MF5='VH':'dsigmf',[54.3 0.875880281690141 312000 0.997]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 1 (1) : 1
+1 3, 1 (1) : 1
+1 4, 1 (1) : 1
+1 5, 1 (1) : 1
+2 1, 1 (1) : 1
+2 2, 1 (1) : 1
+2 3, 1 (1) : 1
+2 4, 2 (1) : 1
+2 5, 2 (1) : 1
+3 1, 1 (1) : 1
+3 2, 1 (1) : 1
+3 3, 2 (1) : 1
+3 4, 2 (1) : 1
+3 5, 3 (1) : 1
+4 1, 1 (1) : 1
+4 2, 1 (1) : 1
+4 3, 1 (1) : 1
+4 4, 1 (1) : 1
+4 5, 1 (1) : 1
+5 1, 1 (1) : 1
+5 2, 2 (1) : 1
+5 3, 3 (1) : 1
+5 4, 4 (1) : 1
+5 5, 5 (1) : 1
